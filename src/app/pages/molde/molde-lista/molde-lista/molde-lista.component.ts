@@ -79,15 +79,24 @@ export class MoldeListaComponent implements OnInit {
     this.spinner.show();
     this.moldeService.listarMoldes()
       .then((obj) => {
-        this.moldes = obj;
+        // Ajuste as datas aqui
+        this.moldes = obj.map((molde: any) => {
+          if (molde.datagravacao) {
+            let date = new Date(molde.datagravacao);
+            date.setHours(date.getHours() - 3);
+            molde.datagravacao = date.toISOString(); // Ou use outro formato conforme necessário
+          }
+          return molde;
+        });
         this.moldes = this.validationService.formataAtivoeInativo(this.moldes);
         this.spinner.hide();
       })
       .catch((erro) => {
         this.spinner.hide();
         this.errorHandler.handle(erro);
-      })
+      });
   }
+  
 
   // AlternarLista() {
   //   if (this.filtro.status === 'Ativos') {

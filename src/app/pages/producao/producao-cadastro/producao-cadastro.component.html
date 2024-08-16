@@ -59,15 +59,15 @@
       <div class="col-12 mb:col-6 lg:col-3">
         <span>Perda</span>
         <p-inputNumber [(ngModel)]="producoes.perda" mode="decimal" name="perda" #perda="ngModel"
-         inputId="withoutgrouping" [useGrouping]="false" placeholder="Preencha perda.."> </p-inputNumber>
+         inputId="withoutgrouping" [useGrouping]="false" placeholder="Preencha perda."> </p-inputNumber>
         <app-message [control]="perda" error="required" text="Informe o Perda"></app-message>
       </div>
 
       <div class="col-12 mb:col-6 lg:col-3">
         <span>Tempo da Maquina</span>
         <p-inputNumber [(ngModel)]="producoes.tempomaquina" mode="decimal" name="tempomaquina" #tempomaquina="ngModel"
-         inputId="withoutgrouping" [useGrouping]="false" placeholder="Preencha perda.."> </p-inputNumber>
-        <app-message [control]="tempomaquina" error="required" text="Informe o Perda"></app-message>
+         inputId="withoutgrouping" [useGrouping]="false" placeholder="Preencha tempo de máquina."> </p-inputNumber>
+        <app-message [control]="tempomaquina" error="required" text="Informe o Tempo da Máquina "></app-message>
       </div>
 
       <div class="col-12 md:col-6 lg:col-3">
@@ -83,22 +83,22 @@
         <p-calendar styleClass="w-full"  name="dataprevisao" baseZIndex="99999" appendTo="body" showButtonBar="true" [monthNavigator]="true"
           [yearNavigator]="true" yearRange="1910:2030" dateFormat="dd/mm/yy" [(ngModel)]="producoes.dataprevisao"
           #dtprivisao="ngModel" [showIcon]="true" required></p-calendar>
-        <app-message [control]="dtprivisao" error="required" text="Informe a Data Privisão"></app-message>
+        <app-message [control]="dtprivisao" error="required" text="Informe a Data Previsão"></app-message>
       </div>
 
       <div class="col-12 mb:col-6 lg:col-3">
         <span>Hora Inicio</span>
         <p-inputMask mask="99:99" [(ngModel)]="producoes.horainicio" mode="decimal" name="horainicio" #horainicio="ngModel"
-         inputId="withoutgrouping" mask="99:99"placeholder="Preencha perda.."></p-inputMask>
+         inputId="withoutgrouping" mask="99:99"placeholder="Preencha hora de início"></p-inputMask>
 
-        <app-message [control]="horainicio" error="required" text="Informe o HoraInicio"></app-message>
+        <app-message [control]="horainicio" error="required" text="Informe a Hora Início"></app-message>
       </div>
 
 
       <div class="col-12 mb:col-6 lg:col-3">
         <span>Hora Final </span>
         <p-inputMask mask="99:99" [(ngModel)]="producoes.horafinal" mode="decimal" name="horafinal" #horainicio="ngModel"
-         inputId="withoutgrouping" mask="99:99"placeholder="Preencha perda.."></p-inputMask>
+         inputId="withoutgrouping" mask="99:99"placeholder="Preencha a hora final"></p-inputMask>
 
       </div>
 

@@ -21,7 +21,7 @@
         </div>
 
         <div class="col-12 mb:col-6 lg:col-3">
-          <h6><span class="obrigatorio">*</span>Funcionario</h6>
+          <h6><span class="obrigatorio">*</span>Funcionário</h6>
           <p-dropdown styleClass="dropdown" name="funcionario" [autoDisplayFirst]="false" #funcionario="ngModel" filter="true"
             [options]="funcionarios" [virtualScroll]="true" [itemSize]="30" optionLabel="label"
             [(ngModel)]="selectedFuncionario" placeholder="Selecione..." [emptyFilterMessage]="messageDrop"
@@ -38,7 +38,7 @@
           <app-message [control]="produto" error="required" text="Informe o Produto"></app-message>
         </div>
         <div class="col-12 mb:col-6 lg:col-3">
-          <h6><span class="obrigatorio">*</span>Maquina</h6>
+          <h6><span class="obrigatorio">*</span>Máquina</h6>
           <p-dropdown styleClass="dropdown" name="maquina" [autoDisplayFirst]="false" #maquina="ngModel" filter="true"
             [options]="maquinas" [virtualScroll]="true" [itemSize]="30" optionLabel="label"
             [(ngModel)]="selectedMaquina" placeholder="Selecione..." [emptyFilterMessage]="messageDrop"
@@ -64,7 +64,7 @@
       </div>
 
       <div class="col-12 mb:col-6 lg:col-3">
-        <span>Tempo da Maquina</span>
+        <span>Tempo da Máquina</span>
         <p-inputNumber [(ngModel)]="producoes.tempomaquina" mode="decimal" name="tempomaquina" #tempomaquina="ngModel"
          inputId="withoutgrouping" [useGrouping]="false" placeholder="Preencha tempo de máquina"> </p-inputNumber>
         <app-message [control]="tempomaquina" error="required" text="Informe o Tempo da Máquina "></app-message>

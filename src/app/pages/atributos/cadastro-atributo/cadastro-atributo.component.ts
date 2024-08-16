@@ -1,61 +1,61 @@
 import { Component, OnInit } from '@angular/core';
-import { Operador } from 'src/app/core/models/operador.model';
-import { OperadorService } from '../operador.service';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MessageService } from 'primeng/api';
+import { ErrorHandlerService } from 'src/app/core/error-handler.service';
+import { Atributo } from 'src/app/core/models/atributo.model';
+import { AtributoService } from '../atributo.service';
 import { NgForm } from '@angular/forms';
-import { ErrorHandlerService } from './../../../core/error-handler.service';
 
 @Component({
-  selector: 'app-operador-cadastro',
-  templateUrl: './operador-cadastro.component.html',
-  styleUrls: ['./operador-cadastro.component.css']
+  selector: 'app-cadastro-atributo',
+  templateUrl: './cadastro-atributo.component.html',
+  styleUrls: ['./cadastro-atributo.component.css']
 })
-export class OperadorCadastroComponent implements OnInit {
+export class CadastroAtributoComponent implements OnInit {
 
   salvando: boolean = false;
-  operador = new Operador()
-  idOperador: number;
+  atributo = new Atributo()
+  idAtributo: number;
 
   constructor(
-    private operadorService: OperadorService,
     private route: ActivatedRoute,
     private router: Router,
     private title: Title,
     private spinner: NgxSpinnerService,
     private messageService: MessageService,
-    private erroHandler: ErrorHandlerService
+    private erroHandler: ErrorHandlerService,
+    private atributoService: AtributoService
   ) { }
 
   ngOnInit() {
-    this.title.setTitle('Cadastro Operador');
-    this.idOperador = this.route.snapshot.params['id'];
-    if (this.idOperador) {
+    this.title.setTitle('Cadastro Atributo');
+    this.idAtributo = this.route.snapshot.params['id'];
+    if (this.idAtributo) {
       this.spinner.show();
-      this.carregarOperador(this.idOperador);
+      this.carregarAtributos(this.idAtributo);
     } else {
-      this.operador.status = true;
+      this.atributo.status = true;
     }
   }
 
   get editando() {
-    return Boolean(this.operador.id);
+    return Boolean(this.atributo.id);
   }
 
   salvar(form: NgForm) {
     if (this.editando) {
-      this.atualizarOperador(form)
+      this.atualizarAtributos(form)
     } else {
-      this.adiconarOperador(form);
+      this.adiconarAtributos(form);
     }
   }
 
-  carregarOperador(id: number) {
-    this.operadorService.buscarPorId(id)
+  carregarAtributos(id: number) {
+    this.atributoService.buscarPorId(id)
       .then((obj) => {
-        this.operador = obj;
+        this.atributo = obj;
         this.atualizarTituliEdicao();
         this.spinner.hide();
       })
@@ -65,13 +65,13 @@ export class OperadorCadastroComponent implements OnInit {
       })
   }
 
-  atualizarOperador(form: NgForm) {
+  atualizarAtributos(form: NgForm) {
     this.salvando = true;
-    this.operadorService.atualizar(this.operador)
+    this.atributoService.atualizar(this.atributo)
       .then((obj) => {
         this.messageService.add({
           severity: 'info',
-          summary: 'Operador',
+          summary: 'Atributo',
           detail: `${obj.nome}, atualizado com sucesso!`
         });
         this.atualizarTituliEdicao();
@@ -84,17 +84,17 @@ export class OperadorCadastroComponent implements OnInit {
       })
   }
 
-  adiconarOperador(form: NgForm) {
+  adiconarAtributos(form: NgForm) {
     this.salvando = true;
-    this.operadorService.adicionar(this.operador)
+    this.atributoService.adicionar(this.atributo)
       .then((obj) => {
         this.messageService.add({
           severity: 'success',
-          summary: 'Operado',
+          summary: 'Atributo',
           detail: `${obj.nome}, adicionado com sucesso!`
         });
         this.salvando = false;
-        this.router.navigate(['/operadores']);
+        this.router.navigate(['/atributos']);
       })
       .catch((erro) => {
         this.salvando = false;
@@ -103,7 +103,7 @@ export class OperadorCadastroComponent implements OnInit {
   }
 
   atualizarTituliEdicao() {
-    this.title.setTitle(`Edição de Operador: ${this.operador.nome}`)
+    this.title.setTitle(`Edição de Atributo: ${this.atributo.nome}`)
   }
 
 }

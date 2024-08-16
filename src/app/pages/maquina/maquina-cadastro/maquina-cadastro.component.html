@@ -113,10 +113,12 @@
     <div class="grid">
       <div class="col-12 md:col-6 lg:col-6">
         <h6><span class="obrigatorio">*</span>Molde</h6>
-        <p-dropdown styleClass="dropdown" name="convenio" filter="true" [autoDisplayFirst]="false"
-          [options]="moldes" [(ngModel)]="moldemaquina.idmolde" #molde="ngModel" [showClear]="true"
-
-          placeholder="Selecione..." [emptyFilterMessage]="messageDrop" required>
+        <p-dropdown  styleClass="dropdown" name="molde"  [autoDisplayFirst]="false"
+          [options]="moldes" [filter]="true" [(ngModel)]="moldemaquina.idmolde" #molde="ngModel" [showClear]="true"
+          placeholder="Selecione..." [emptyFilterMessage]="messageDrop" required [filter]="true"
+          [filterBy]="'label'"
+          [optionLabel]="'label'"
+          [optionValue]="'value'" >
         </p-dropdown>
         <app-message [control]="molde" error="required" text="Informe o molde"></app-message>
       </div>

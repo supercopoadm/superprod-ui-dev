@@ -22,12 +22,12 @@ import { FiltroproducaoService } from 'src/app/core/service/filtros/filtroproduc
 })
 export class ProducaoListaComponent implements OnInit {
 
-   // @ViewChild('tabela', { static: true }) table: Table;
-   @ViewChild('tabela') table: Table;
-   @ViewChild('paginator') paginator: Paginator;
-   @ViewChild('buttonFilter') buttonFilter: ElementRef;
+  // @ViewChild('tabela', { static: true }) table: Table;
+  @ViewChild('tabela') table: Table;
+  @ViewChild('paginator') paginator: Paginator;
+  @ViewChild('buttonFilter') buttonFilter: ElementRef;
 
-   regex = new Regex();
+  regex = new Regex();
   rowsPerPageTable: number[] = [10, 25, 50, 100, 200];
   rangeDates: Date[];
   operador: Operador[];
@@ -60,12 +60,12 @@ export class ProducaoListaComponent implements OnInit {
   dataproducaode: string;
   dataproducaoate: string;
   blockBtnFilter = false;
- 
+
 
   constructor(
     private producaoService: ProducaoService,
     private title: Title,
-   // private relatoriosService: RelatoriosService,
+    // private relatoriosService: RelatoriosService,
     private errorHandler: ErrorHandlerService,
     private filterService: FilterService,
     public auth: AuthService,
@@ -171,22 +171,22 @@ export class ProducaoListaComponent implements OnInit {
     this.carregarProducao();
   }
 
- /*  showItens(maquinaId: number) {
-    this.producaoService.listarmaquinas(maquinaId)
-      .then(obj => {
-        this.itensAtend = obj;
-      });
-    this.displayExames = true;
-  }
- */
+  /*  showItens(maquinaId: number) {
+     this.producaoService.listarmaquinas(maquinaId)
+       .then(obj => {
+         this.itensAtend = obj;
+       });
+     this.displayExames = true;
+   }
+  */
 
-/*   gerarAtendimento(atend: any) {
-    this.relatoriosService.atendimento(atend.id.toString())
-      .then(relatorio => {
-        const url = window.URL.createObjectURL(relatorio);
-        window.open(url);
-      });
-  } */
+  /*   gerarAtendimento(atend: any) {
+      this.relatoriosService.atendimento(atend.id.toString())
+        .then(relatorio => {
+          const url = window.URL.createObjectURL(relatorio);
+          window.open(url);
+        });
+    } */
 
 
   carregarOperadores() {
@@ -221,6 +221,7 @@ export class ProducaoListaComponent implements OnInit {
     } else {
       this.filtro.status = 'Ativos';
     }
+    console.log(this.filtro.status)
     this.carregarProducao();
   }
 
@@ -334,5 +335,8 @@ export class ProducaoListaComponent implements OnInit {
 
     this.carregarProducao();
   }
+
+
+
 
 }

@@ -36,6 +36,7 @@ export class MaquinaCadastroComponent implements OnInit {
 
   moldes = [];
   colsItens = [];
+  moldesFiltrados = [];
 
 
   constructor(
@@ -53,11 +54,11 @@ export class MaquinaCadastroComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.carregarMolde();
     this.title.setTitle('Cadastro Maquina');
     this.idMaquina = this.route.snapshot.params['id'];
-    this.carregarMolde();
     this.colsItens = [
-      { field: 'descricaomolde', header: 'Molde', width: '200px' },
+      { field: 'descricaomolde', header: 'Molde', width: '100px' },
       /*  {
          field: 'preco',
          header: 'Preço',
@@ -178,11 +179,21 @@ export class MaquinaCadastroComponent implements OnInit {
 
   carregarMolde() {
     return this.moldeService.listarMoldes()
-
       .then((moldes) => {
+        console.log('Moldes carregados:', moldes);
         this.moldes = moldes.map((c) => ({ label: c.nome, value: c.id }));
+        this.moldesFiltrados = [...this.moldes];
+        console.log(this.moldesFiltrados)
       })
       .catch(error => this.errorHandler.handle(error));
+  }
+
+
+  filtrarMoldes(event) {
+    const query = event.query.toLowerCase();
+    this.moldesFiltrados = this.moldes.filter(molde =>
+      typeof molde.label === 'string' && molde.label.toLowerCase().includes(query)
+    );
   }
 
   yesDelete(index: number) {

@@ -1,3 +1,4 @@
+import { Atributo } from "./atributo.model";
 import { Funcionario } from "./funcionario.model";
 import { Maquina } from "./maquina.model";
 import { Operador } from "./operador.model";
@@ -20,6 +21,7 @@ export class Producao {
     maquina = new Maquina();
     produto = new Produto();
     funcionario = new Funcionario();
+    atributo = new Atributo();
     loginusuario: string;
     datagravacao: Date;
 }

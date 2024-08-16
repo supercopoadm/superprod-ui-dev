@@ -36,6 +36,10 @@ const routes: Routes = [
       import('./pages/produto/produto.module').then(m => m.ProdutoModule)
   },
   {
+    path: 'atributos', loadChildren: () =>
+      import('./pages/atributos/atributo.module').then(m => m.AtributoModule)
+  },
+  {
     path: 'producoes', loadChildren: () =>
       import('./pages/producao/producao.module').then(m => m.ProducaoModule)
   },

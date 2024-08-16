@@ -5,19 +5,19 @@ import { AuthService } from '../../seguranca/auth.service';
 import { Title } from '@angular/platform-browser';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ValidationService } from 'src/app/core/service/validation.service';
-import { OperadorService } from '../operador.service';
-import { ErrorHandlerService } from './../../../core/error-handler.service';
+import { ErrorHandlerService } from 'src/app/core/error-handler.service';
+import { AtributoService } from '../atributo.service';
 
 @Component({
-  selector: 'app-operador-lista',
-  templateUrl: './operador-lista.component.html',
-  styleUrls: ['./operador-lista.component.css']
+  selector: 'app-listar-atributo',
+  templateUrl: './listar-atributo.component.html',
+  styleUrls: ['./listar-atributo.component.css']
 })
-export class OperadorListaComponent implements OnInit {
+export class ListarAtributoComponent implements OnInit {
 
   @ViewChild('tabela') table: Table;
   rowsPerPageTable: number[] = [10, 25, 50, 100, 200, 500];
-  operadores = [];
+  atributos = [];
   cols: any[];
   messagePageReport = 'Mostrando {first} a {last} de {totalRecords} registros';
   items: MenuItem[];
@@ -25,17 +25,16 @@ export class OperadorListaComponent implements OnInit {
   valorTooltip = 'Inativos';
 
   constructor(
-    private operadorService: OperadorService,
     public auth: AuthService,
     private title: Title,
     private spinner: NgxSpinnerService,
     private validationService: ValidationService,
-    private erroHandler: ErrorHandlerService
+    private erroHandler: ErrorHandlerService,
+    private atributoService: AtributoService
   ) { }
 
   ngOnInit() {
-
-    this.title.setTitle('Lista de Operadores');
+    this.title.setTitle('Lista de Atributos');
     this.items = [
       {
         label: 'Ativo/Inativo',
@@ -45,26 +44,23 @@ export class OperadorListaComponent implements OnInit {
         }
       }
     ]
-    this.carregarOperador();
+    this.carregarAtributos();
 
     this.cols = [
       { field: 'id', header: 'Código', width: '100px', type: 'numeric', key: 1 },
       { field: 'nome', header: 'Nome', width: '150px', type: 'text', key: 2 },
-      { field: 'numero', header: 'Numero', width: '150px', type: 'numeric', key: 3 },
       { field: 'datagravacao', header: 'Data Gravação', width: '100px', data: true, format: `dd/MM/yyyy H:mm`, type: 'date', key: 4 },
       { field: 'loginusuario', header: 'Usuário Gravação', width: '150px', type: 'text', key: 5 },
       { field: 'statusformatado', header: 'Status', width: '150px', type: 'text', key: 6 }
     ]
-
   }
 
-
-  carregarOperador() {
+  carregarAtributos() {
     this.spinner.show();
-    this.operadorService.listarMoldes()
+    this.atributoService.listar()
       .then((obj) => {
-        this.operadores = obj;
-        this.operadores = this.validationService.formataAtivoeInativo(this.operadores);
+        this.atributos = obj;
+        this.atributos = this.validationService.formataAtivoeInativo(this.atributos);
         this.spinner.hide();
       })
       .catch((erro) => {
@@ -72,6 +68,7 @@ export class OperadorListaComponent implements OnInit {
         this.erroHandler.handle(erro);
       })
   }
+
 
   AlternarLista() {
     this.spinner.show();
@@ -83,10 +80,10 @@ export class OperadorListaComponent implements OnInit {
       this.valorTooltip = 'Inativos';
       this.sinal = true;
     }
-    this.operadorService.AlternarLista(valor)
+    this.atributoService.AlternarLista(valor)
       .then((obj) => {
-        this.operadores = obj;
-        this.operadores = this.validationService.formataAtivoeInativo(this.operadores);
+        this.atributos = obj;
+        this.atributos = this.validationService.formataAtivoeInativo(this.atributos);
         this.spinner.hide();
       })
       .catch((erro) => {
@@ -96,11 +93,10 @@ export class OperadorListaComponent implements OnInit {
   }
 
   refresh() {
-    this.carregarOperador();
+    this.carregarAtributos();
   }
 
   onClear() {
     this.table.clear();
   }
-
 }

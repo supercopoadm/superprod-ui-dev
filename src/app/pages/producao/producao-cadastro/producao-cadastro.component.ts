@@ -15,6 +15,7 @@ import { ProdutoService } from '../../produto/produto.service';
 import { NgForm } from '@angular/forms';
 import { Produto } from 'src/app/core/models/produto.model';
 import { FuncionarioService } from '../../funcionario/funcionario.service';
+import { AtributoService } from '../../atributos/atributo.service';
 
 @Component({
   selector: 'app-producao-cadastro',
@@ -31,6 +32,7 @@ export class ProducaoCadastroComponent implements OnInit {
   maquinas = [];
   produtos = [];
   funcionarios = [];
+  atributos = [];
   novaProducao = false;
   exibirForm = false;
   exibirFormOperador = false;
@@ -45,6 +47,7 @@ export class ProducaoCadastroComponent implements OnInit {
   selectedProduto: any;
   selectedMaquina: any;
   selectedFuncionario: any;
+  selectedAtributo: any;
 
   constructor(
     private producaoService: ProducaoService,
@@ -59,7 +62,8 @@ export class ProducaoCadastroComponent implements OnInit {
     private title: Title,
     public auth: AuthService,
     private confirmation: ConfirmationService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private atributoService: AtributoService
   ) { }
 
   ngOnInit() {
@@ -67,9 +71,10 @@ export class ProducaoCadastroComponent implements OnInit {
     this.carregarMaquina();
     this.carregarProduto();
     this.carregarFuncionario();
+    this.carregarAtributo();
     this.producoes.status = true;
     this.idProd = this.route.snapshot.params['id'];
-    this.title.setTitle('Cadastro de Atendimento');
+    this.title.setTitle('Cadastro de Produção');
 
     if (this.idProd) {
       this.carregarProducao(this.idProd);
@@ -97,6 +102,12 @@ export class ProducaoCadastroComponent implements OnInit {
           this.selectedProduto = this.produtos.find(
             (pac) => pac.value === obj.produto.id
           );
+          this.selectedFuncionario = this.funcionarios.find(
+            (pac) => pac.value === obj.funcionario.id
+          );
+          this.selectedAtributo = this.atributos.find(
+            (pac) => pac.value === obj.atributo.id
+          );
 
 
 
@@ -119,6 +130,24 @@ export class ProducaoCadastroComponent implements OnInit {
     } else {
       this.adicionarProducao(form);
     }
+  }
+
+
+  carregarAtributo() {
+    return this.atributoService
+      .listar()
+      .then((pac) => {
+        this.atributos = pac.map((mp) => ({ label: mp.nome, value: mp.id }));
+        // if (this.idAtend) {
+        //   this.spinner.show();
+        //   this.carregarAtendimento(this.idAtend);
+        // } else {
+        //   this.atendimentos.status = true;
+        // }
+      })
+      .catch((erro) => {
+        this.errorHandler.handle(erro);
+      });
   }
 
 
@@ -196,6 +225,7 @@ export class ProducaoCadastroComponent implements OnInit {
     this.producaoMaquina();
     this.producaoProduto();
     this.producaoFuncionario();
+    this.producaoAtributo();
     this.producaoService
       .adicionar(this.producoes)
       .then((atendAdicionado) => {
@@ -220,6 +250,7 @@ export class ProducaoCadastroComponent implements OnInit {
     this.producaoOperador();
     this.producaoProduto();
     this.producaoFuncionario();
+    this.producaoAtributo();
     // console.log(this.selectedPaciente);
     // console.log(this.atendimentos);
     this.producaoService
@@ -232,7 +263,6 @@ export class ProducaoCadastroComponent implements OnInit {
           detail: `alterado com sucesso!`,
         });
         this.salvando = false;
-        this.router.navigate(['/producoes']);
         this.atualizarTituloEdicao();
       })
       .catch((erro) => {
@@ -252,6 +282,10 @@ export class ProducaoCadastroComponent implements OnInit {
   }
   producaoFuncionario() {
     this.producoes.funcionario.id = this.selectedFuncionario.value;
+  }
+
+  producaoAtributo() {
+    this.producoes.atributo.id = this.selectedAtributo.value;
   }
 
 

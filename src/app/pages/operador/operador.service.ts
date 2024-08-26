@@ -17,7 +17,14 @@ constructor(private  http: HttpClient) {
 }
 
 
-listarMoldes(): Promise<any> {
+listarOperadores(): Promise<any> {
+  console.log(firstValueFrom(this.http.get(`${this.operadorUrl}`)).then(
+    (response) => {
+      const obj = response as any[];
+      this.convertStringDate(obj);
+      return obj;
+    }
+  ))
   return firstValueFrom(this.http.get(`${this.operadorUrl}`)).then(
     (response) => {
       const obj = response as any[];

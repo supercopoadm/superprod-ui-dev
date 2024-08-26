@@ -34,7 +34,6 @@ export class OperadorListaComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
     this.title.setTitle('Lista de Operadores');
     this.items = [
       {
@@ -61,7 +60,7 @@ export class OperadorListaComponent implements OnInit {
 
   carregarOperador() {
     this.spinner.show();
-    this.operadorService.listarMoldes()
+    this.operadorService.listarOperadores()
       .then((obj) => {
         this.operadores = obj;
         this.operadores = this.validationService.formataAtivoeInativo(this.operadores);
@@ -75,7 +74,7 @@ export class OperadorListaComponent implements OnInit {
 
   AlternarLista() {
     this.spinner.show();
-    const valor = this.sinal ? '/inativos' : '/';
+    const valor = this.sinal ? '/inativos' : '/ativos';
     if (this.sinal === true) {
       this.valorTooltip = 'Ativos';
       this.sinal = false;

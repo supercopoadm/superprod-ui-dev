@@ -40,7 +40,7 @@ export class ProducaoListaComponent implements OnInit {
   dateRangeStart: string;
   dateRangeEnd: string;
   restoringFilter: boolean;
-  status = 'Ativo';
+  
   messageDrop = 'Nenhum resultado encontrado...';
   valorTooltip = 'Inativos';
   displayExames: boolean;
@@ -117,7 +117,7 @@ export class ProducaoListaComponent implements OnInit {
       { field: 'dataprevisao', header: 'Data Previsao', width: '150px', data: true, format: `dd/MM/yyyy`, type: 'date' },
       { field: 'dataproducao', header: 'Data Producao', width: '150px', data: true, format: `dd/MM/yyyy`, type: 'date' },
       { field: 'loginusuario', header: 'Usuário', width: '150px', type: 'text' },
-      { field: 'datagravacao', header: 'Data Sistema', width: '150px', data: true, format: `dd/MM/yyyy H:mm`, type: 'date' }
+      { field: 'datagravacao', header: 'Data Sistema', width: '150px', data: true, format: `dd/MM/yyyy H:mm`, type: 'date' },
     ];
     /* this.colsItens = [
       { field: 'acesso', header: 'Acesso' },
@@ -189,15 +189,6 @@ export class ProducaoListaComponent implements OnInit {
     } */
 
 
-  carregarOperadores() {
-    return this.operadorService.listarMoldes()
-      .then(obj => {
-        this.operador = obj
-          .map(mp => ({ label: mp.nome, value: mp.id }));
-      })
-      .catch(erro => this.errorHandler.handle(erro));
-  }
-
   carregarProducao() {
     this.spinner.show();
     this.producaoService.listarComFiltro(this.filtro)
@@ -216,13 +207,28 @@ export class ProducaoListaComponent implements OnInit {
   }
 
   AlternarLista() {
-    if (this.filtro.status === 'Ativos') {
-      this.filtro.status = 'Inativos';
-    } else {
-      this.filtro.status = 'Ativos';
-    }
-    console.log(this.filtro.status)
-    this.carregarProducao();
+    this.spinner.show();
+    // Alterna o valor de this.sinal
+    this.sinal = !this.sinal;
+
+    // Define o valor baseado em this.sinal
+    const valor = this.sinal ? '/inativos' : '/';
+
+    // Define o tooltip baseado em this.sinal
+    this.valorTooltip = this.sinal ? 'Inativos' : 'Ativos';
+
+    console.log(this.valorTooltip);
+
+    this.producaoService.AlternarLista(valor)
+      .then((obj) => {
+        this.producoes = obj;
+        this.producoes = this.validationService.formataAtivoeInativo(this.producoes);
+        this.spinner.hide();
+      })
+      .catch((erro) => {
+        this.spinner.hide();
+        this.errorHandler.handle(erro);
+      });
   }
 
 

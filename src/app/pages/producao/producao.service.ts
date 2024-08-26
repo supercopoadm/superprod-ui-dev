@@ -17,7 +17,7 @@ constructor(private  http: HttpClient) {
   this.producaoUrl = `${environment.apiUrl}/producoes`
 }
 
-listarMoldes(): Promise<any> {
+listarProducao(): Promise<any> {
   return firstValueFrom(this.http.get(`${this.producaoUrl}`)).then(
     (response) => {
       const obj = response as any[];
@@ -70,7 +70,6 @@ AlternarLista(valor: string): Promise<any> {
 }
 
 
-
 convertStringDate(obj: any[]) {
   obj.forEach((element) => {
     // Certifique-se de que o formato da string de data está correto
@@ -84,9 +83,6 @@ convertStringDate(obj: any[]) {
     }
   });
 }
-
-
-
 
 
 listarComFiltro(filtro: FiltrosProducao): Promise<any> {
@@ -110,8 +106,6 @@ validarParametros(filtro: FiltrosProducao) {
     obj.id = filtro.id;
   }
 
- 
-
   if (filtro.nomeOperador) {
     obj.nomeOperador = filtro.nomeOperador;
   }
@@ -129,10 +123,6 @@ validarParametros(filtro: FiltrosProducao) {
   if (filtro.dataprevisaoate) {
     obj.dataprevisaoate = filtro.dataprevisaoate;
   }
-
-
-
-
 
   if (filtro.loginusuario) {
     obj.loginusuario = filtro.loginusuario;

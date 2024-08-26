@@ -113,8 +113,8 @@ buscarEmpAtiva() {
 
 
 regrasdePermissao(roles) {
-  for (const role of roles) {
-    if (this.temPermissao(role)) {
+    for (const role of roles) {
+        if (this.temPermissao(role)) {
       return true;
     }
   }

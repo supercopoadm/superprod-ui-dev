@@ -88,7 +88,7 @@ export class MaquinaListaComponent implements OnInit {
 
   AlternarLista() {
     this.spinner.show();
-    const valor = this.sinal ? '/inativos' : '/';
+    const valor = this.sinal ? '/inativos' : '/ativos';
     if (this.sinal === true) {
       this.valorTooltip = 'Ativos';
       this.sinal = false;

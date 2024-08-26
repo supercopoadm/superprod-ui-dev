@@ -40,6 +40,7 @@ export class MoldeListaComponent implements OnInit {
 
   ngOnInit() {
     this.title.setTitle('Lista de Moldes');
+    this.carregarConvenios();
     this.items = [
       {
         label: 'Ativo / Inativo',
@@ -49,7 +50,6 @@ export class MoldeListaComponent implements OnInit {
         }
       }
     ]
-    this.carregarConvenios();
 
     this.cols = [
       { field: 'id', header: 'Código', width: '100px', type: 'numeric', key: 1 },
@@ -108,18 +108,16 @@ export class MoldeListaComponent implements OnInit {
   // }
 
   AlternarLista() {
+    console.log(this.sinal)
     this.spinner.show();
-    // Alterna o valor de this.sinal
-    this.sinal = !this.sinal;
-
-    // Define o valor baseado em this.sinal
-    const valor = this.sinal ? '/inativos' : '/';
-
-    // Define o tooltip baseado em this.sinal
-    this.valorTooltip = this.sinal ? 'Inativos' : 'Ativos';
-
-    console.log(this.sinal);
-
+    const valor = this.sinal ? '/inativos' : '/ativos';
+    if (this.sinal === true) {
+      this.valorTooltip = 'Ativos';
+      this.sinal = false;
+    } else {
+      this.valorTooltip = 'Inativos';
+      this.sinal = true;
+    }
     this.moldeService.AlternarLista(valor)
       .then((obj) => {
         this.moldes = obj;

@@ -187,7 +187,7 @@ export class ProducaoCadastroComponent implements OnInit {
 
   carregarOperador() {
     return this.operadorService
-      .listarMoldes()
+      .listarOperadores()
       .then((pac) => {
         this.operadoor = pac.map((mp) => ({ label: mp.nome, value: mp.id }));
         // if (this.idAtend) {

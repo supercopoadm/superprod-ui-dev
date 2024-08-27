@@ -44,7 +44,7 @@ export class MaquinaListaComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.title.setTitle('Lista de Maquinas');
+    this.title.setTitle('Lista de Máquinas');
     this.items = [
       {
         label: 'Ativo/Inativo',

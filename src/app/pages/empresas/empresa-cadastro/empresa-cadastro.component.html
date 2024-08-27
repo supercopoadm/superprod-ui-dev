@@ -27,10 +27,10 @@
                 </div>
 
                 <div class="col-12 md:col-6 lg:col-3">
-                    <h6><span class="obrigatorio">*</span>Cep</h6>
+                    <h6><span class="obrigatorio">*</span>CEP</h6>
                     <p-inputMask mask="99999-999" id="cep" name="cep" (onBlur)="consultaCEP($event.target.value, f)"
                         [(ngModel)]="empresas.cep" #cep="ngModel" unmask="true" required></p-inputMask>
-                    <app-message [control]="cep" error="required" text="Informe o cep"></app-message>
+                    <app-message [control]="cep" error="required" text="Informe o CEP"></app-message>
                 </div>
 
                 <div class="col-12 md:col-6 lg:col-3">
@@ -61,7 +61,7 @@
                 </div>
 
                 <div class="col-12 md:col-6 lg:col-3">
-                    <h6><span class="obrigatorio">*</span>Estados</h6>
+                    <h6><span class="obrigatorio">*</span>Estado</h6>
                     <p-dropdown [options]="estados" [(ngModel)]="empresas.uf" #uf="ngModel" name="uf"
                         placeholder="Selecione..." optionLabel="estado" optionValue="uf" filter="true"
                         [virtualScroll]="true" (onChange)="validaEstado($event, f)" [itemSize]="31"
@@ -71,7 +71,7 @@
                 </div>
 
                 <div class="col-12 md:col-6 lg:col-3">
-                    <h6><span class="obrigatorio">*</span>Cidades</h6>
+                    <h6><span class="obrigatorio">*</span>Cidade</h6>
                     <p-dropdown [options]="cidadesFiltradas" [disabled]="!empresas.uf" [(ngModel)]="empresas.cidade"
                         #cidade="ngModel" name="cidade" placeholder="Selecione..." optionLabel="CIDADE"
                         optionValue="CIDADE" filter="true" [virtualScroll]="true" [itemSize]="31">

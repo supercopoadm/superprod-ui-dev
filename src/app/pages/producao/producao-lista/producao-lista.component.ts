@@ -113,9 +113,9 @@ export class ProducaoListaComponent implements OnInit {
       { field: 'id', header: 'Produção', width: '130px', type: 'numeric' },
       { field: 'nomeOperador', header: 'Operador', width: '200px', type: 'text' },
       { field: 'nomeProduto', header: 'Produto', width: '200px', type: 'text' },
-      { field: 'nomeMaquina', header: 'Maquina', width: '110px', type: 'numeric' },
-      { field: 'dataprevisao', header: 'Data Previsao', width: '150px', data: true, format: `dd/MM/yyyy`, type: 'date' },
-      { field: 'dataproducao', header: 'Data Producao', width: '150px', data: true, format: `dd/MM/yyyy`, type: 'date' },
+      { field: 'nomeMaquina', header: 'Máquina', width: '110px', type: 'numeric' },
+      { field: 'dataprevisao', header: 'Data Previsão', width: '150px', data: true, format: `dd/MM/yyyy`, type: 'date' },
+      { field: 'dataproducao', header: 'Data Produção', width: '150px', data: true, format: `dd/MM/yyyy`, type: 'date' },
       { field: 'loginusuario', header: 'Usuário', width: '150px', type: 'text' },
       { field: 'datagravacao', header: 'Data Sistema', width: '150px', data: true, format: `dd/MM/yyyy H:mm`, type: 'date' },
     ];

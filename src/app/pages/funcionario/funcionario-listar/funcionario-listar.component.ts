@@ -35,7 +35,7 @@ export class FuncionarioListarComponent implements OnInit {
 
   ngOnInit() {
 
-    this.title.setTitle('Lista de Funcionarios');
+    this.title.setTitle('Lista de Funcionários');
     this.items = [
       {
         label: 'Ativo/Inativo',

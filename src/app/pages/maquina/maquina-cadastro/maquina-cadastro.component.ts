@@ -58,7 +58,7 @@ export class MaquinaCadastroComponent implements OnInit {
     this.title.setTitle('Cadastro Maquina');
     this.idMaquina = this.route.snapshot.params['id'];
     this.colsItens = [
-      { field: 'descricaomolde', header: 'Molde', width: '100px' },
+      { field: 'descricaomolde', header: 'Molde', width: '1400px' },
       /*  {
          field: 'preco',
          header: 'Preço',

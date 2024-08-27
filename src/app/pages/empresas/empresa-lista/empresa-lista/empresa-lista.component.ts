@@ -70,7 +70,7 @@ export class EmpresaListaComponent implements OnInit {
     this.colors = [];
     this.cols = [
       { field: 'id', header: 'Código', width: '115px', type: 'text' },
-      { field: 'cpfoucnpj', header: 'Cnpj', width: '200px', type: 'text' },
+      { field: 'cpfoucnpj', header: 'CNPJ', width: '200px', type: 'text' },
       { field: 'razaosocial', header: 'Empresa', width: '250px', type: 'text' },
       { field: 'cidade', header: 'Cidade', width: '150px', type: 'text' },
       { field: 'uf', header: 'Estado', width: '130px', type: 'text' },

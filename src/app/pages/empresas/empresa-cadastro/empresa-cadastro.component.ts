@@ -169,7 +169,7 @@ export class EmpresaCadastroComponent implements OnInit {
           this.messageService.add({
             severity: 'info',
             summary: 'Atenção',
-            detail: `Erro ao buscar cep!`,
+            detail: `Erro ao buscar CEP!`,
           });
         },
       });
@@ -220,7 +220,7 @@ export class EmpresaCadastroComponent implements OnInit {
           this.messageService.add({
             severity: 'info',
             summary: 'Atenção',
-            detail: `cnpj inválido ou erro ao buscar!`,
+            detail: `CNPJ inválido ou erro ao buscar!`,
           });
         },
       });

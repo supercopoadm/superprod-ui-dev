@@ -55,10 +55,10 @@ export class MaquinaCadastroComponent implements OnInit {
 
   ngOnInit() {
     this.carregarMolde();
-    this.title.setTitle('Cadastro Maquina');
+    this.title.setTitle('Cadastro de Máquina');
     this.idMaquina = this.route.snapshot.params['id'];
     this.colsItens = [
-      { field: 'descricaomolde', header: 'Molde', width: '100px' },
+      { field: 'descricaomolde', header: 'Molde', width: '1400px' },
       /*  {
          field: 'preco',
          header: 'Preço',
@@ -141,8 +141,8 @@ export class MaquinaCadastroComponent implements OnInit {
       .then((obj) => {
         this.messageService.add({
           severity: 'info',
-          summary: 'Maquina',
-          detail: `${this.maquina.nome}, atualizado com sucesso!`
+          summary: 'Máquina',
+          detail: `${this.maquina.nome}, Atualizado com sucesso!`
         });
         this.atualizarTituliEdicao();
         this.salvando = false;
@@ -160,8 +160,8 @@ export class MaquinaCadastroComponent implements OnInit {
       .then((obj) => {
         this.messageService.add({
           severity: 'success',
-          summary: 'Maquina',
-          detail: `${obj.nome}, adicionado com sucesso!`
+          summary: 'Máquina',
+          detail: `${obj.nome}, Adicionado com sucesso!`
         });
         this.salvando = false;
         this.router.navigate(['/maquinas']);
@@ -199,7 +199,7 @@ export class MaquinaCadastroComponent implements OnInit {
   yesDelete(index: number) {
     this.confirmation.confirm({
       // message: `<b>${ this.auth.jwtPayload?.user_name}</b>, Tem certeza que deseja sair? `,
-      message: `Tem certeza que deseja remover ? `,
+      message: `Tem certeza que deseja remover? `,
       accept: () => {
         this.remover(index);
       },

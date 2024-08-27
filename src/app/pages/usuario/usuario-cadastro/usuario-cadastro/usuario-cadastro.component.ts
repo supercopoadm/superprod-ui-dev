@@ -71,7 +71,7 @@ export class UsuarioCadastroComponent implements OnInit {
     this.cols = [{ field: 'name', header: 'Permissões' }];
     this.colsEmpresa = [
       { field: 'id', header: 'Código', width: '100px' },
-      { field: 'cpfoucnpj', header: 'Cnpj', width: '150px' },
+      { field: 'cpfoucnpj', header: 'CNPJ', width: '150px' },
       { field: 'razaosocial', header: 'Empresa', width: '250px' },
       { field: 'cidade', header: 'Cidade', width: '150px' },
       { field: 'uf', header: 'Estado', width: '100px' },

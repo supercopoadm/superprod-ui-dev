@@ -1,7 +1,7 @@
 <main>
   <p-card styleClass="card-adjust mt-5 mx-3">
     <div class="mb-3">
-      <span class="title colorTitle">Cadastro de Producação</span>
+      <span class="title colorTitle">Cadastro de Produção</span>
     </div>
     <div class="flex justify-content-start mb-2">
       <button pButton type="button" class="p-button-primary" icon="pi pi-arrow-left" pTooltip="Volta"
@@ -12,7 +12,7 @@
       <div class="grid flex flex-wrap justify-content-center">
 
         <div class="col-12 mb:col-6 lg:col-3">
-          <h6><span class="obrigatorio">*</span>Operadoor</h6>
+          <h6><span class="obrigatorio">*</span>Operador</h6>
           <p-dropdown styleClass="dropdown" name="operador" [autoDisplayFirst]="false" #operador="ngModel" filter="true"
             [options]="operadoor" [virtualScroll]="true" [itemSize]="30" optionLabel="label"
             [(ngModel)]="selectedOperador" placeholder="Selecione..." [emptyFilterMessage]="messageDrop"
@@ -93,7 +93,7 @@
       </div>
 
       <div class="col-12 mb:col-6 lg:col-3">
-        <span>Hora Inicio</span>
+        <span>Hora Início</span>
         <p-inputMask mask="99:99" [(ngModel)]="producoes.horainicio" mode="decimal" name="horainicio" #horainicio="ngModel"
          inputId="withoutgrouping" mask="99:99"placeholder="Preencha hora de início"></p-inputMask>
 

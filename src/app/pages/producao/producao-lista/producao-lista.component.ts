@@ -89,11 +89,13 @@ export class ProducaoListaComponent implements OnInit {
     this.filtro = new FiltrosProducao();
     this.filtroDefault();
     this.carregarProducao();
+    this.table.clear();
   }
 
 
   ngOnInit() {
     this.filtroDefault();
+    this.carregarProducao();
     this.conf.ripple = true;
     this.title.setTitle('Produção');
 
@@ -109,14 +111,15 @@ export class ProducaoListaComponent implements OnInit {
 
 
     this.cols = [
-      { field: 'dataproducao', header: 'Data Produção', width: '90px', data: true, format: `dd/MM/yyyy`, type: 'date' },
-      { field: 'nomeMaquina', header: 'Máquina', width: '110px', type: 'numeric' },
+      { field: 'dataproducao', header: 'Data Produção', width: '180px', data: true, format: `dd/MM/yyyy`, type: 'date' },
+      { field: 'nomeMaquina', header: 'Máquina', width: '130px', type: 'numeric' },
       { field: 'nomeProduto', header: 'Produto', width: '330px', type: 'text' },
       { field: 'nomeatributo', header: 'Atributo', width: '250px', type: 'text' },
-      { field: 'quantidade', header: 'Quantidade', width: '110px', type: 'numeric' },
+      { field: 'quantidade', header: 'Quantidade', width: '150px', type: 'numeric' },
       { field: 'lote', header: 'Lote', width: '110px', type: 'text' },
       { field: 'loginusuario', header: 'Usuário', width: '130px', type: 'text' },
-      { field: 'datagravacao', header: 'Data Sistema', width: '130px', data: true, format: `dd/MM/yyyy H:mm`, type: 'date' },
+      { field: 'datagravacao', header: 'Data Sistema', width: '170px', data: true, format: `dd/MM/yyyy H:mm`, type: 'date' },
+      { field: 'statusformatado', header: 'Status', width: '120px', type: 'text'}
     ];
     /* this.colsItens = [
       { field: 'acesso', header: 'Acesso' },

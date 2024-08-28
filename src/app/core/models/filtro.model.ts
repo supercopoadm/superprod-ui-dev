@@ -11,6 +11,9 @@ export class FiltrosProducao {
     dataproducaoate: string;
     loginusuario: string;
     status: string;
+    nomeAtributo: string;
+    lote: string;
+    quantidade: number;
 }
 
 export class FiltrosMolde {

@@ -31,7 +31,7 @@
           <th *ngFor="let cols of columns" [ngStyle]="{'min-width': cols.width}">
             {{cols.header}}
           </th>
-          <th style="min-width: 150px;">Status</th>
+          <th style="min-width: 70px;">Status</th>
         </tr>
         <tr>
           <th class="btnAcoes">&nbsp;</th>
@@ -121,12 +121,11 @@
                   class="p-button-raised  w-full" (click)="dataProducao.toggle($event)"></button>
               </div>
             </form>
-          </th>
-          <th>
-          </th>
+          </th> 
+          <th>    
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-producoes let-columns="columns" let-rowData let-expanded="expanded">
+      <ng-template pTemplate="body"  let-producoes let-columns="columns" let-rowData let-expanded="expanded">
         <tr [pSelectableRow]="rowData">
 
           <td class="btnEditar">

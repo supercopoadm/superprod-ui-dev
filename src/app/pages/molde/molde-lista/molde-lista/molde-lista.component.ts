@@ -108,7 +108,6 @@ export class MoldeListaComponent implements OnInit {
   // }
 
   AlternarLista() {
-    console.log(this.sinal)
     this.spinner.show();
     const valor = this.sinal ? '/inativos' : '/ativos';
     if (this.sinal === true) {

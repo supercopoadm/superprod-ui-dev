@@ -1,7 +1,7 @@
 export const environment = {
     production: false,
-    whiteListedDomains: ['localhost:8080'],
-    blackListedDomains: ['http://localhost:8080'],
-    apiUrl: 'http://localhost:8080',
+    whiteListedDomains: ['superprod-ce95f95742c9.herokuapp.com'],
+    blackListedDomains: ['https://superprod-ce95f95742c9.herokuapp/oauth/token'],
+    apiUrl: 'https://superprod-ce95f95742c9.herokuapp.com',
     version: '1.0.0'
 }

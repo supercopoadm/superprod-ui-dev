@@ -40,7 +40,6 @@ export class ProducaoListaComponent implements OnInit {
   dateRangeStart: string;
   dateRangeEnd: string;
   restoringFilter: boolean;
-  
   messageDrop = 'Nenhum resultado encontrado...';
   valorTooltip = 'Inativos';
   displayExames: boolean;
@@ -90,11 +89,13 @@ export class ProducaoListaComponent implements OnInit {
     this.filtro = new FiltrosProducao();
     this.filtroDefault();
     this.carregarProducao();
+    this.table.clear();
   }
 
 
   ngOnInit() {
     this.filtroDefault();
+    this.carregarProducao();
     this.conf.ripple = true;
     this.title.setTitle('Produção');
 
@@ -110,14 +111,15 @@ export class ProducaoListaComponent implements OnInit {
 
 
     this.cols = [
-      { field: 'id', header: 'Produção', width: '130px', type: 'numeric' },
-      { field: 'nomeOperador', header: 'Operador', width: '200px', type: 'text' },
-      { field: 'nomeProduto', header: 'Produto', width: '200px', type: 'text' },
-      { field: 'nomeMaquina', header: 'Máquina', width: '110px', type: 'numeric' },
-      { field: 'dataprevisao', header: 'Data Previsão', width: '150px', data: true, format: `dd/MM/yyyy`, type: 'date' },
-      { field: 'dataproducao', header: 'Data Produção', width: '150px', data: true, format: `dd/MM/yyyy`, type: 'date' },
-      { field: 'loginusuario', header: 'Usuário', width: '150px', type: 'text' },
-      { field: 'datagravacao', header: 'Data Sistema', width: '150px', data: true, format: `dd/MM/yyyy H:mm`, type: 'date' },
+      { field: 'dataproducao', header: 'Data Produção', width: '180px', data: true, format: `dd/MM/yyyy`, type: 'date' },
+      { field: 'nomeMaquina', header: 'Máquina', width: '130px', type: 'numeric' },
+      { field: 'nomeProduto', header: 'Produto', width: '330px', type: 'text' },
+      { field: 'nomeatributo', header: 'Atributo', width: '250px', type: 'text' },
+      { field: 'quantidade', header: 'Quantidade', width: '150px', type: 'numeric' },
+      { field: 'lote', header: 'Lote', width: '110px', type: 'text' },
+      { field: 'loginusuario', header: 'Usuário', width: '130px', type: 'text' },
+      { field: 'datagravacao', header: 'Data Sistema', width: '170px', data: true, format: `dd/MM/yyyy H:mm`, type: 'date' },
+      { field: 'statusformatado', header: 'Status', width: '120px', type: 'text'}
     ];
     /* this.colsItens = [
       { field: 'acesso', header: 'Acesso' },
@@ -203,22 +205,19 @@ export class ProducaoListaComponent implements OnInit {
         this.spinner.hide();
         this.errorHandler.handle(erro);
       });
-
   }
 
   AlternarLista() {
+    console.log(this.sinal)
     this.spinner.show();
-    // Alterna o valor de this.sinal
-    this.sinal = !this.sinal;
-
-    // Define o valor baseado em this.sinal
-    const valor = this.sinal ? '/inativos' : '/';
-
-    // Define o tooltip baseado em this.sinal
-    this.valorTooltip = this.sinal ? 'Inativos' : 'Ativos';
-
-    console.log(this.valorTooltip);
-
+    const valor = this.sinal ? '/inativos' : '/ativos';
+    if (this.sinal === true) {
+      this.valorTooltip = 'Ativos';
+      this.sinal = false;
+    } else {
+      this.valorTooltip = 'Inativos';
+      this.sinal = true;
+    }
     this.producaoService.AlternarLista(valor)
       .then((obj) => {
         this.producoes = obj;

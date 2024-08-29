@@ -31,7 +31,6 @@ listarMaquina(): Promise<any> {
   )
  }
 
-
  excluir(id: number): Promise<void> {
   return firstValueFrom(this.http.delete(`${this.maquinaUrl}/${id}`))
   .then()

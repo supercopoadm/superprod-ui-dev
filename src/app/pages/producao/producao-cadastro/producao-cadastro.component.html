@@ -59,7 +59,7 @@
             [options]="atributos" [virtualScroll]="true" [itemSize]="30" optionLabel="label"
             [(ngModel)]="selectedAtributo" placeholder="Selecione..." [emptyFilterMessage]="messageDrop"
             [showClear]="true" required [filter]="true"  optionLabel="label"  filterBy="label"></p-dropdown>
-          <app-message [control]="atributo" error="required" text="Informe o Maquina"></app-message>
+          <app-message [control]="atributo" error="required" text="Informe o Atributo"></app-message>
         </div>
 
       <div class="col-12 mb:col-6 lg:col-3">
@@ -110,8 +110,8 @@
 
       <div class="col-12 mb:col-6 lg:col-3">
         <span>Lote</span>
-        <input type="text" pInputText class="w-full" upperCase name="turno" #turno="ngModel" ngModel [(ngModel)]="producoes.turno" >
-        <app-message [control]="turno" error="required" text="Informe o Turno"></app-message>
+        <input type="text" pInputText class="w-full" upperCase name="lote" #lote="ngModel" ngModel [(ngModel)]="producoes.lote" >
+        <app-message [control]="lote" error="required" text="Informe o Lote"></app-message>
     </div>
 
       <div class="col-12 mb:col-6 lg:col-3">

@@ -18,6 +18,7 @@ export class MoldeListaComponent implements OnInit {
 
 
   @ViewChild('tabela') table: Table;
+  
   rowsPerPageTable: number[] = [10, 25, 50, 100, 200, 500];
   moldes = [];
   cols: any[];
@@ -108,7 +109,6 @@ export class MoldeListaComponent implements OnInit {
   // }
 
   AlternarLista() {
-    console.log(this.sinal)
     this.spinner.show();
     const valor = this.sinal ? '/inativos' : '/ativos';
     if (this.sinal === true) {

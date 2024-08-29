@@ -102,12 +102,11 @@ validarParametros(filtro: FiltrosProducao) {
   obj.page = filtro.pagina;
   obj.size = filtro.itensPorPagina;
 
-  if (filtro.id) {
-    obj.id = filtro.id;
+  if (filtro.dataproducaode) {
+    obj.dataproducaode = filtro.dataproducaode;
   }
-
-  if (filtro.nomeOperador) {
-    obj.nomeOperador = filtro.nomeOperador;
+  if (filtro.dataproducaoate) {
+    obj.datalancamentoate = filtro.dataproducaoate;
   }
   if (filtro.nomeMaquina) {
     obj.nomeMaquina = filtro.nomeMaquina;
@@ -115,31 +114,30 @@ validarParametros(filtro: FiltrosProducao) {
   if (filtro.nomeProduto) {
     obj.nomeProduto = filtro.nomeProduto;
   }
-
-  if (filtro.dataprevisaode) {
-    obj.dataprevisaode = filtro.dataprevisaode;
+  if (filtro.nomeAtributo) {
+    obj.nomeAtributo = filtro.nomeAtributo;
   }
-
-  if (filtro.dataprevisaoate) {
-    obj.dataprevisaoate = filtro.dataprevisaoate;
-  }
-
-  if (filtro.loginusuario) {
-    obj.loginusuario = filtro.loginusuario;
-  }
-
-  if (filtro.dataproducaode) {
-    obj.dataproducaode = filtro.dataproducaode;
-  }
-
-  if (filtro.dataproducaoate) {
-    obj.datalancamentoate = filtro.dataproducaoate;
-  }
-
   if (filtro.status) {
     obj.status = filtro.status;
   }
+  // if (filtro.id) {
+  //   obj.id = filtro.id;
+  // }
+  // if (filtro.nomeOperador) {
+  //   obj.nomeOperador = filtro.nomeOperador;
+  // }
+  
+  // if (filtro.dataprevisaode) {
+  //   obj.dataprevisaode = filtro.dataprevisaode;
+  // }
 
+  // if (filtro.dataprevisaoate) {
+  //   obj.dataprevisaoate = filtro.dataprevisaoate;
+  // }
+
+  // if (filtro.loginusuario) {
+  //   obj.loginusuario = filtro.loginusuario;
+  // }
   return obj;
 }
 

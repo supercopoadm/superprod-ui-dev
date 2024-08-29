@@ -15,7 +15,7 @@ export class Producao {
     dataproducao?: Date;
     horainicio?: string;
     horafinal?: string;
-    turno?: string;
+    lote?: string;
     status?: boolean;
     operador = new Operador();
     maquina = new Maquina();

@@ -122,6 +122,7 @@ export class ProducaoCadastroComponent implements OnInit {
           this.selectedAtributo = this.atributos.find(
             (pac) => pac.value === obj.atributo.id
           );
+          
 
         }, 300);
         this.producoes = obj;
@@ -254,9 +255,6 @@ export class ProducaoCadastroComponent implements OnInit {
         this.salvando = false;
         this.errorHandler.handle(erro);
       });
-      console.log(this.producoes.motivoperda)
-      console.log(this.producoes.atributo)
-      console.log(this.producoes.lote)
   }
 
 
@@ -305,9 +303,13 @@ export class ProducaoCadastroComponent implements OnInit {
     this.producoes.atributo.id = this.selectedAtributo.value;
   }
   producaoMotivoperda() {
-    this.producoes.motivoperda = this.selectedMotivoperda.value;
+    if (this.selectedMotivoperda) {
+      this.producoes.motivoperda = this.selectedMotivoperda.value;
+    } else {
+      this.selectedMotivoperda = [{ label: 'Nada', value: 'Nada' }];
+      this.producoes.motivoperda = null;
+    }
   }
-
 
   atualizarTituloEdicao() {
     this.title.setTitle(`${this.producoes.operador.nome}`);

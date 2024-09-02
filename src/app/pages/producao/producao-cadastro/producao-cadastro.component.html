@@ -66,11 +66,19 @@
         <span>Perda</span>
         <p-inputNumber [(ngModel)]="producoes.perda" mode="decimal" name="perda" #perda="ngModel"
          inputId="withoutgrouping" [useGrouping]="false" placeholder="Preencha perda"> </p-inputNumber>
-        <app-message [control]="perda" error="required" text="Informe o Perda"></app-message>
+        <app-message [control]="perda" error="required" text="Informe a Perda"></app-message>
       </div>
 
       <div class="col-12 mb:col-6 lg:col-3">
-        <span>Tempo da Máquina</span>
+        <span>Motivo da perda</span>
+        <p-dropdown styleClass="dropdown" name="motivoperda" [autoDisplayFirst]="false" #motivoperda="ngModel" filter="true"
+          [options]="motivosperda" [virtualScroll]="true" [itemSize]="30" optionLabel="label"
+          [(ngModel)]="selectedMotivoperda" placeholder="Selecione..." [emptyFilterMessage]="messageDrop"
+          [showClear]="true" [filter]="true"  optionLabel="value"  filterBy="label"></p-dropdown>
+      </div>
+
+      <div class="col-12 mb:col-6 lg:col-3">
+        <span>Ciclo</span>
         <p-inputNumber [(ngModel)]="producoes.tempomaquina" mode="decimal" name="tempomaquina" #tempomaquina="ngModel"
          inputId="withoutgrouping" [useGrouping]="false" placeholder="Preencha tempo de máquina"> </p-inputNumber>
         <app-message [control]="tempomaquina" error="required" text="Informe o Tempo da Máquina "></app-message>
@@ -84,13 +92,13 @@
         <app-message [control]="dtproducao" error="required" text="Informe a Data Produção"></app-message>
       </div>
 
-      <div class="col-12 md:col-6 lg:col-3">
+      <!-- <div class="col-12 md:col-6 lg:col-3">
         <h6><span class="obrigatorio">*</span>Data Previsão</h6>
         <p-calendar styleClass="w-full"  name="dataprevisao" baseZIndex="99999" appendTo="body" showButtonBar="true" [monthNavigator]="true"
           [yearNavigator]="true" yearRange="1910:2030" dateFormat="dd/mm/yy" [(ngModel)]="producoes.dataprevisao"
           #dtprivisao="ngModel" [showIcon]="true" required></p-calendar>
         <app-message [control]="dtprivisao" error="required" text="Informe a Data Previsão"></app-message>
-      </div>
+      </div> -->
 
       <div class="col-12 mb:col-6 lg:col-3">
         <span>Hora Início</span>
@@ -112,7 +120,7 @@
         <span>Lote</span>
         <input type="text" pInputText class="w-full" upperCase name="lote" #lote="ngModel" ngModel [(ngModel)]="producoes.lote" >
         <app-message [control]="lote" error="required" text="Informe o Lote"></app-message>
-    </div>
+      </div>
 
       <div class="col-12 mb:col-6 lg:col-3">
         <span>Obervação</span>

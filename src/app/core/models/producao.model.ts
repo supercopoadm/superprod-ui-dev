@@ -11,6 +11,7 @@ export class Producao {
     quantidade?: number;
     cor?: string;
     perda?: number;
+    motivoperda?: string;
     tempomaquina?: number;
     dataproducao?: Date;
     horainicio?: string;

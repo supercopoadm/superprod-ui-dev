@@ -48,6 +48,8 @@ export class ProducaoCadastroComponent implements OnInit {
   selectedMaquina: any;
   selectedFuncionario: any;
   selectedAtributo: any;
+  selectedMotivoperda: any;
+  motivosperda: any[];
 
   constructor(
     private producaoService: ProducaoService,
@@ -76,11 +78,23 @@ export class ProducaoCadastroComponent implements OnInit {
     this.idProd = this.route.snapshot.params['id'];
     this.title.setTitle('Cadastro de Produção');
 
+    this.motivosperda = [
+      { label: 'Produto queimado/derretido', value: 'Produto queimado/derretido' },
+      { label: 'Regulagem da máquina', value: 'Regulagem da máquina' },
+      { label: 'Material contaminado', value: 'Material contaminado' },
+      { label: 'Produto manchado', value: 'Produto manchado' },
+      { label: 'Falha na injeção', value: 'Falha na injeção' },
+      { label: 'Produto trincado/com estrias', value: 'Produto trincado/com estrias' },
+      { label: 'Galhos', value: 'Galhos' },
+      { label: 'Outro (Especificar na observação)', value: 'Outro' }
+    ];
+
     if (this.idProd) {
       this.carregarProducao(this.idProd);
     } else {
       this.producoes.status = true;
     }
+    
   }
 
 
@@ -108,8 +122,7 @@ export class ProducaoCadastroComponent implements OnInit {
           this.selectedAtributo = this.atributos.find(
             (pac) => pac.value === obj.atributo.id
           );
-
-
+          
 
         }, 300);
         this.producoes = obj;
@@ -226,6 +239,7 @@ export class ProducaoCadastroComponent implements OnInit {
     this.producaoProduto();
     this.producaoFuncionario();
     this.producaoAtributo();
+    this.producaoMotivoperda();
     this.producaoService
       .adicionar(this.producoes)
       .then((atendAdicionado) => {
@@ -251,6 +265,7 @@ export class ProducaoCadastroComponent implements OnInit {
     this.producaoProduto();
     this.producaoFuncionario();
     this.producaoAtributo();
+    this.producaoMotivoperda();
     // console.log(this.selectedPaciente);
     // console.log(this.atendimentos);
     this.producaoService
@@ -287,7 +302,14 @@ export class ProducaoCadastroComponent implements OnInit {
   producaoAtributo() {
     this.producoes.atributo.id = this.selectedAtributo.value;
   }
-
+  producaoMotivoperda() {
+    if (this.selectedMotivoperda) {
+      this.producoes.motivoperda = this.selectedMotivoperda.value;
+    } else {
+      this.selectedMotivoperda = [{ label: 'Nada', value: 'Nada' }];
+      this.producoes.motivoperda = null;
+    }
+  }
 
   atualizarTituloEdicao() {
     this.title.setTitle(`${this.producoes.operador.nome}`);

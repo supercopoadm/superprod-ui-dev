@@ -64,7 +64,7 @@
 
       <div class="col-12 mb:col-6 lg:col-3">
         <span>Perda</span>
-        <p-inputNumber [(ngModel)]="producoes.perda" mode="decimal" name="perda" #perda="ngModel"
+        <p-inputNumber [minFractionDigits]="2" [locale]="'pt-BR'" [(ngModel)]="producoes.perda" mode="decimal" name="perda" #perda="ngModel"
          inputId="withoutgrouping" [useGrouping]="false" placeholder="Preencha perda"> </p-inputNumber>
         <app-message [control]="perda" error="required" text="Informe a Perda"></app-message>
       </div>
@@ -79,7 +79,7 @@
 
       <div class="col-12 mb:col-6 lg:col-3">
         <span>Ciclo</span>
-        <p-inputNumber [(ngModel)]="producoes.tempomaquina" mode="decimal" name="tempomaquina" #tempomaquina="ngModel"
+        <p-inputNumber [minFractionDigits]="2" [locale]="'pt-BR'" [(ngModel)]="producoes.tempomaquina" mode="decimal" name="tempomaquina" #tempomaquina="ngModel"
          inputId="withoutgrouping" [useGrouping]="false" placeholder="Preencha tempo de máquina"> </p-inputNumber>
         <app-message [control]="tempomaquina" error="required" text="Informe o Tempo da Máquina "></app-message>
       </div>

@@ -98,7 +98,7 @@ export class ProducaoListaComponent implements OnInit {
 
 
     this.cols = [
-      { field: 'dataproducao', header: 'Data Produção', width: '180px', data: true,  type: 'text' },
+      { field: 'dataproducao', header: 'Data Produção', width: '180px', data: true,  format: `dd/MM/yyyy`, type: 'date' },
       { field: 'nomeMaquina', header: 'Máquina', width: '130px', type: 'numeric' },
       { field: 'nomeProduto', header: 'Produto', width: '330px', type: 'text' },
       { field: 'nomeatributo', header: 'Atributo', width: '250px', type: 'text' },

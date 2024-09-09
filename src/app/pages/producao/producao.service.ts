@@ -81,6 +81,11 @@ convertStringDate(obj: any[]) {
         .tz('America/Sao_Paulo')
         .toDate();
     }
+    if (element.dataproducao) {
+      element.dataproducao = moment(element.dataproducao, dateFormat)
+        .tz('America/Sao_Paulo')
+        .toDate();
+    }
   });
 }
 

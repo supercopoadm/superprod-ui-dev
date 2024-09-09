@@ -19,8 +19,8 @@ constructor(private  http: HttpClient) {
 
 listarProducao(): Promise<any> {
   return firstValueFrom(this.http.get(`${this.producaoUrl}`)).then(
-    (response) => {
-      const obj = response as any[];
+    (response: any) => {
+      const obj = response.content;
       this.convertStringDate(obj);
       return obj;
     }

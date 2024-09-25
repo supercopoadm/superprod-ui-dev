@@ -30,9 +30,7 @@ import { DividerModule } from 'primeng/divider';
 import { PaginatorModule } from 'primeng/paginator';
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-
-
-
+import { TagModule } from 'primeng/tag';
 
 @NgModule({
     exports: [
@@ -67,8 +65,8 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
         PaginatorModule,
         CalendarModule,
         InputTextareaModule,
+        TagModule,
       
-
     ]
 })
 

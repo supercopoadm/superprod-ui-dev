@@ -45,11 +45,11 @@
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="body" let-molde let-columns="columns" let-rowData>
+    <ng-template pTemplate="body" let-producao let-columns="columns" let-rowData>
       <tr [pSelectableRow]="rowData">
         <td class="btnEditar">
           <button pButton pRipple type="button" class="p-button-raised " pTooltip="Editar"
-            icon="pi pi-pencil" tooltipPosition="top" [routerLink]="['/producoes', molde.id]"  [disabled]="!auth.temPermissao('U_PRODU')">
+            icon="pi pi-pencil" tooltipPosition="top" [routerLink]="['/producoes', producao.id]"  [disabled]="!auth.temPermissao('U_PRODU')">
           </button>
         </td>
         <td *ngFor="let cols of columns" [ngStyle]="{'min-width': cols.width}" tooltipPosition="top"

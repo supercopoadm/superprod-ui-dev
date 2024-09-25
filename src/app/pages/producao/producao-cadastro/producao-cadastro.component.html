@@ -58,7 +58,7 @@
           <p-dropdown styleClass="dropdown" name="atributo" [autoDisplayFirst]="false" #atributo="ngModel" filter="true"
             [options]="atributos" [virtualScroll]="true" [itemSize]="30" optionLabel="label"
             [(ngModel)]="selectedAtributo" placeholder="Selecione..." [emptyFilterMessage]="messageDrop"
-            [showClear]="true" required [filter]="true"  optionLabel="label"  filterBy="label"></p-dropdown>
+            [showClear]="true" required [filter]="true" filterBy="label"></p-dropdown>
           <app-message [control]="atributo" error="required" text="Informe o Atributo"></app-message>
         </div>
 

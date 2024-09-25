@@ -50,6 +50,11 @@ const routes: Routes = [
   { path: 'alterarsenha', component: AlterarSenhaComponent },
 
   { path: 'nao-autorizado', component: NaoAutorizadaComponent },
+  {
+    path: 'pcp', loadChildren: () =>
+      import('./pages/pcp/pcp.module').then(m => m.PcpModule)
+  },
+  
 
   /*   { path: 'pagina-nao-encontrada', component: PaginaNaoEncontradaComponent },
     { path: '**', redirectTo: 'pagina-nao-encontrada' } */

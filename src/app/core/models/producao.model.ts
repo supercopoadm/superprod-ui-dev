@@ -7,7 +7,7 @@ import { Produto } from "./produto.model";
 export class Producao {
     id?: number;
     obs?: string;
-    dataprevisao: Date;
+    dataprevisao?: Date;
     quantidade?: number;
     cor?: string;
     perda?: number;

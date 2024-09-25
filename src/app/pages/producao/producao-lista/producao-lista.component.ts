@@ -32,7 +32,7 @@ export class ProducaoListaComponent implements OnInit {
   rangeDates: Date[];
   operador: Operador[];
   producoes = [];
-  cols = [];
+  cols: any[];
   colsItens = [];
   sinal = true;
   totalExames: number;
@@ -77,28 +77,14 @@ export class ProducaoListaComponent implements OnInit {
 
 
   onClear() {
-    this.cols.forEach(col => {
-      if (col.qty === null || col.qty === undefined) { } else {
-        col.qty = null;
-      }
-    });
-    this.dataprevisaode = null;
-    this.dataprevisaoate = null;
-    this.dataproducaode = null;
-    this.dataproducaoate = null;
-    this.filtro = new FiltrosProducao();
-    this.filtroDefault();
-    this.carregarProducao();
     this.table.clear();
   }
 
 
   ngOnInit() {
     this.filtroDefault();
-    this.carregarProducao();
     this.conf.ripple = true;
     this.title.setTitle('Produção');
-
     this.items = [
       {
         label: 'Ativo / Inativo',
@@ -108,10 +94,10 @@ export class ProducaoListaComponent implements OnInit {
         },
       }
     ];
-
+    this.carregarProducao();
 
     this.cols = [
-      { field: 'dataproducao', header: 'Data Produção', width: '180px', data: true, format: `dd/MM/yyyy`, type: 'date' },
+      { field: 'dataproducao', header: 'Data Produção', width: '180px', data: true,  format: `dd/MM/yyyy`, type: 'date' },
       { field: 'nomeMaquina', header: 'Máquina', width: '130px', type: 'numeric' },
       { field: 'nomeProduto', header: 'Produto', width: '330px', type: 'text' },
       { field: 'nomeatributo', header: 'Atributo', width: '250px', type: 'text' },
@@ -131,26 +117,26 @@ export class ProducaoListaComponent implements OnInit {
       { field: 'total', header: 'Total', currency: true, format: `BRL` }
     ]; */
 
-    this.filterService.register('customCreatedDateFilter', (value: string, filter) => {
+    // this.filterService.register('customCreatedDateFilter', (value: string, filter) => {
 
-      if (this.dateRangeStart === value && this.dateRangeEnd === undefined) {
-        return true;
-      }
+    //   if (this.dateRangeStart === value && this.dateRangeEnd === undefined) {
+    //     return true;
+    //   }
 
-      if (this.dateRangeStart === value || this.dateRangeEnd === value) {
-        return true;
-      }
+    //   if (this.dateRangeStart === value || this.dateRangeEnd === value) {
+    //     return true;
+    //   }
 
-      if (
-        this.dateRangeStart !== undefined &&
-        this.dateRangeEnd !== undefined &&
-        moment(this.dateRangeStart).isBefore(value) &&
-        moment(this.dateRangeEnd).isAfter(value)) {
-        return true;
-      }
+    //   if (
+    //     this.dateRangeStart !== undefined &&
+    //     this.dateRangeEnd !== undefined &&
+    //     moment(this.dateRangeStart).isBefore(value) &&
+    //     moment(this.dateRangeEnd).isAfter(value)) {
+    //     return true;
+    //   }
 
-      return false;
-    });
+    //   return false;
+    // });
 
     //  this.carregarAtendimentos();
     // this.carregarUsers();
@@ -193,22 +179,19 @@ export class ProducaoListaComponent implements OnInit {
 
   carregarProducao() {
     this.spinner.show();
-    this.producaoService.listarComFiltro(this.filtro)
+    this.producaoService.listarProducao()
       .then(obj => {
-        this.producoes = obj.content;
-        this.totalRegistros = obj.totalElements;
-        this.totalPages = obj.totalPages;
+        this.producoes = obj;
         this.producoes = this.validationService.formataAtivoeInativo(this.producoes);
         this.spinner.hide();
       })
       .catch((erro) => {
         this.spinner.hide();
         this.errorHandler.handle(erro);
-      });
+      }); 
   }
 
   AlternarLista() {
-    console.log(this.sinal)
     this.spinner.show();
     const valor = this.sinal ? '/inativos' : '/ativos';
     if (this.sinal === true) {

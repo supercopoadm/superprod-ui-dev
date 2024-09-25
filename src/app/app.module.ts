@@ -17,6 +17,8 @@ import { SegurancaModule } from './pages/seguranca/seguranca.module';
 import { registerLocaleData } from '@angular/common';
 import { DashboardModule } from './pages/dashboard/dashboard.module';
 
+
+
 registerLocaleData(localePt, 'pt');
 
 export const maskConfig: Partial<IConfig> = {
@@ -25,7 +27,7 @@ export const maskConfig: Partial<IConfig> = {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     HttpClientModule,
@@ -37,7 +39,7 @@ export const maskConfig: Partial<IConfig> = {
     CoreModule,
     NgxSpinnerModule,
     SharedModule,
-    DashboardModule
+    DashboardModule,
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

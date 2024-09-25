@@ -19,8 +19,8 @@ constructor(private  http: HttpClient) {
 
 listarProducao(): Promise<any> {
   return firstValueFrom(this.http.get(`${this.producaoUrl}`)).then(
-    (response) => {
-      const obj = response as any[];
+    (response: any) => {
+      const obj = response.content;
       this.convertStringDate(obj);
       return obj;
     }
@@ -40,6 +40,7 @@ listarProducao(): Promise<any> {
 
 
  atualizar(producao: Producao): Promise<Producao> {
+  console.log(producao)
   return firstValueFrom(this.http.put(`${this.producaoUrl}/${producao.id}`, producao))
   .then((response) => response as Producao);
  }
@@ -48,7 +49,7 @@ listarProducao(): Promise<any> {
  buscarPorId(id: number): Promise<Producao> {
   return firstValueFrom(this.http.get<Producao>(`${this.producaoUrl}/${id}`))
   .then((response: any) =>  { 
-    this.converterStringsParaDatas([response]);
+    this.convertStringDate([response]);
     return response
   });
 }
@@ -81,45 +82,50 @@ convertStringDate(obj: any[]) {
         .tz('America/Sao_Paulo')
         .toDate();
     }
+    if (element.dataproducao) {
+      element.dataproducao = moment(element.dataproducao, dateFormat)
+        .tz('America/Sao_Paulo')
+        .toDate();
+    }
   });
 }
 
 
-listarComFiltro(filtro: FiltrosProducao): Promise<any> {
-  const param: { [k: string]: any } = this.validarParametros(filtro);
-  return firstValueFrom(this.http.get(`${this.producaoUrl}`, { params: param })).then(
-    (response: any) => {
-      this.converterStringsParaDatasFiltro(response.content);
-      return response;
-    }
-  );
-}
+// listarComFiltro(filtro: FiltrosProducao): Promise<any> {
+//   const param: { [k: string]: any } = this.validarParametros(filtro);
+//   return firstValueFrom(this.http.get(`${this.producaoUrl}`, { params: param })).then(
+//     (response: any) => {
+//       this.converterStringsParaDatasFiltro(response.content);
+//       return response;
+//     }
+//   );
+// }
 
 
-validarParametros(filtro: FiltrosProducao) {
-  const obj: { [k: string]: any } = {};
+// validarParametros(filtro: FiltrosProducao) {
+//   const obj: { [k: string]: any } = {};
 
-  obj.page = filtro.pagina;
-  obj.size = filtro.itensPorPagina;
+//   obj.page = filtro.pagina;
+//   obj.size = filtro.itensPorPagina;
 
-  if (filtro.dataproducaode) {
-    obj.dataproducaode = filtro.dataproducaode;
-  }
-  if (filtro.dataproducaoate) {
-    obj.datalancamentoate = filtro.dataproducaoate;
-  }
-  if (filtro.nomeMaquina) {
-    obj.nomeMaquina = filtro.nomeMaquina;
-  }
-  if (filtro.nomeProduto) {
-    obj.nomeProduto = filtro.nomeProduto;
-  }
-  if (filtro.nomeAtributo) {
-    obj.nomeAtributo = filtro.nomeAtributo;
-  }
-  if (filtro.status) {
-    obj.status = filtro.status;
-  }
+//   if (filtro.dataproducaode) {
+//     obj.dataproducaode = filtro.dataproducaode;
+//   }
+//   if (filtro.dataproducaoate) {
+//     obj.datalancamentoate = filtro.dataproducaoate;
+//   }
+//   if (filtro.nomeMaquina) {
+//     obj.nomeMaquina = filtro.nomeMaquina;
+//   }
+//   if (filtro.nomeProduto) {
+//     obj.nomeProduto = filtro.nomeProduto;
+//   }
+//   if (filtro.nomeAtributo) {
+//     obj.nomeAtributo = filtro.nomeAtributo;
+//   }
+//   if (filtro.status) {
+//     obj.status = filtro.status;
+//   }
   // if (filtro.id) {
   //   obj.id = filtro.id;
   // }
@@ -138,35 +144,37 @@ validarParametros(filtro: FiltrosProducao) {
   // if (filtro.loginusuario) {
   //   obj.loginusuario = filtro.loginusuario;
   // }
-  return obj;
-}
+//   return obj;
+// }
 
-private converterStringsParaDatasFiltro(obj: any[]) {
+// private converterStringsParaDatasFiltro(obj: any[]) {
+//   obj.forEach((element) => {
+//     if (element.dataprivisao) {
+//       element.dataprivisao = moment(element.dataprivisao, 'YYYY-MM-DD H:mm')
+//         .tz('America/Sao_Paulo')
+//         .toDate();
+//     }
+//     if (element.datagravacao) {
+//       element.datagravacao = moment(element.datagravacao, 'YYYY-MM-DD H:mm')
+//         .tz('America/Sao_Paulo')
+//         .toDate();
+//     }
+//   });
+// }
+
+
+private converterStringsParaDatas(obj: any[]) {
   obj.forEach((element) => {
-    if (element.dataprivisao) {
-      element.dataprivisao = moment(element.dataprivisao, 'YYYY-MM-DD H:mm')
-        .tz('America/Sao_Paulo')
-        .toDate();
-    }
+    // Certifique-se de que o formato da string de data está correto
+    const dateFormat = 'YYYY/MM/DD H:mm';
+    
+    // Verifique se a data não é nula ou indefinida antes de tentar convertê-la
     if (element.datagravacao) {
-      element.datagravacao = moment(element.datagravacao, 'YYYY-MM-DD H:mm')
+      element.datagravacao = moment(element.datagravacao, dateFormat)
         .tz('America/Sao_Paulo')
         .toDate();
     }
   });
-}
-
-
-private converterStringsParaDatas(prod: Producao[]) {
-  for (const pr of prod) {
-    let offset = new Date().getTimezoneOffset() * 60000;
-
-    pr.dataprevisao = new Date(new Date(pr.dataprevisao!).getTime() + offset);
-
-    if (pr.dataproducao) {
-      pr.dataproducao = new Date(new Date(pr.dataproducao).getTime() + offset);
-    }
-  }
 }
 
 }

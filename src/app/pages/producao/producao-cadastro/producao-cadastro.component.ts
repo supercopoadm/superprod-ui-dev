@@ -268,10 +268,12 @@ export class ProducaoCadastroComponent implements OnInit {
     this.producaoMotivoperda();
     // console.log(this.selectedPaciente);
     // console.log(this.atendimentos);
+    console.log(this.producoes)
     this.producaoService
       .atualizar(this.producoes)
       .then((producao) => {
         this.producoes = producao;
+        console.log(producao)
         this.messageService.add({
           severity: 'info',
           summary: 'Produção',
@@ -279,6 +281,7 @@ export class ProducaoCadastroComponent implements OnInit {
         });
         this.salvando = false;
         this.atualizarTituloEdicao();
+        this.router.navigate(['/producoes'])
       })
       .catch((erro) => {
         this.salvando = false;

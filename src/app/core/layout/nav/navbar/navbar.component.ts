@@ -16,6 +16,12 @@ import { environment } from 'src/environments/environment';
 })
 export class NavbarComponent implements OnInit {
 
+  openTabs: {[key: string]: boolean} = {
+    cadastro: false,
+    relatorio: false,
+    producao: false
+  };
+  
   sair: any;
   logo: any = '/assets/imagem/logo branca.svg';
   logoDescricao: any = '/assets/images/Logo original.svg';
@@ -58,6 +64,21 @@ export class NavbarComponent implements OnInit {
   ngAfterViewInit() {
     if (this.auth.jwtPayload) {
       this.usuarioLogado();
+    }
+  }
+
+  toggleTab(tab: string) {
+    // Verifica se a aba clicada já está aberta
+    const isTabAlreadyOpen = this.openTabs[tab];
+
+    // Fecha todas as abas
+    for (let key in this.openTabs) {
+      this.openTabs[key] = false;
+    }
+    
+    // Abre a aba clicada
+    if (!isTabAlreadyOpen) {
+      this.openTabs[tab] = true;
     }
   }
 

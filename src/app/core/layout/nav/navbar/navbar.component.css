@@ -121,16 +121,23 @@ hr {
   user-select: none;
 }
 
+.p-button.btn-sidebar{
+  padding: 10px 20px; 
+  margin-bottom: 10px;
+  
+}
 
 .p-button.btn-menu {
   font-weight: 500;
   color: #000000;
   background: transparent;
-  width: 100%;
+  width: 90%;
   margin-bottom: 0.625rem;
   text-align: left;
   outline: none;
   height: 1.875rem;
+  margin-left: 20px
+  
 }
 
 .p-button.btn-menu:hover {
@@ -306,3 +313,4 @@ hr {
 .p-avatar-group .p-avatar {
   border: none;
 }
+

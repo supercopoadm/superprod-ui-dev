@@ -1,0 +1,1 @@
+http-server ./dist/superprod-ui -p 4200
